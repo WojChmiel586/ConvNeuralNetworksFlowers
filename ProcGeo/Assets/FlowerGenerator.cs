@@ -34,6 +34,40 @@ public struct FlowerData
         this.headData = headData;
     }
 }
+[System.Serializable]
+public struct SaveDataFormat
+{
+    //Head
+    public int _horizontalLines, _verticalLines;
+    public float _radius;
+    public Color _petalColour;
+
+    //Stem
+    public int _cylinderVertexCount;
+    public float _stemRadius;
+    public int _leafCount;
+    public int _edgeRingCount;
+    public Vector3 startPos, tangent1, tangent2, endPos;
+
+    public SaveDataFormat(FlowerData data)
+    {
+        this._horizontalLines = data.headData._horizontalLines;
+        this._verticalLines = data.headData._verticalLines;
+        this._radius = data.headData._radius;
+        this._petalColour = data.headData._petalColour;
+
+        this._cylinderVertexCount = data.stemData._cylinderVertexCount;
+        this._stemRadius = data.stemData._stemRadius;
+        this._leafCount = data.stemData._leafCount;
+        this._edgeRingCount = data.stemData._edgeRingCount;
+        this.startPos = data.stemData.startPos;
+        this.tangent1 = data.stemData.tangent1;
+        this.tangent2 = data.stemData.tangent2;
+        this.endPos = data.stemData.endPos;
+    }
+
+}
+
 public class FlowerGenerator : MonoBehaviour
 {
 
@@ -45,25 +79,30 @@ public class FlowerGenerator : MonoBehaviour
     StemData stemData = new StemData();
     HeadData headData = new HeadData();
 
-
+    public bool AutoCollectData = false;
+    public int MaxDatapointsCount = 200;
     public string FlowerPropertiesFileName;
+
     public FlowerData FlowerData;
-    [Header("Stem Properties")]
-    public string StemPropertiesFileName;
+
+
 
     private FlowerStem stemScript;
 
-    [Header("Flower Head properties")]
-    public string HeadPropertiesFileName;
+
+
     private SphereProcGen flowerHeadScript;
+
+
+    //ScreenShot stuff
+    private string directoryName = "Screenshots";
+    private string fileName = "TestImage.png";
 
     // Start is called before the first frame update
     void Start()
     {
        stemScript = GetComponentInChildren<FlowerStem>();
        flowerHeadScript = GetComponentInChildren<SphereProcGen>();
-       //FlowerPropertiesFileName = Application.persistentDataPath + "/flowerdata.json";
-       //Debug.Log(FlowerPropertiesFileName = "C:/Users/wojte/OneDrive/Pulpit/FlowerData/" + dateString + " flowerdata.json");
     }
 
     private void Update()
@@ -75,6 +114,12 @@ public class FlowerGenerator : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.S))
         {
+            SaveFlower();
+        }
+        if (AutoCollectData && saveCountIndicator < MaxDatapointsCount)
+        {
+            GenerateData();
+            GenerateFlower();
             SaveFlower();
         }
     }
@@ -137,12 +182,12 @@ public class FlowerGenerator : MonoBehaviour
 
     public void SaveFlower()
     {
-        string dateString = System.DateTime.Now.ToString("MM.dd.yyyy");
-        FlowerPropertiesFileName = "C:/Users/wojte/OneDrive/Pulpit/FlowerData/" + " ObjectNumber " + saveCountIndicator + " " + dateString + " flowerdata.json";
-        FlowerData flower = new FlowerData(stemData,headData);
-        string JsonStringFlower = JsonUtility.ToJson(FlowerData,true);
-
+        //string dateString = System.DateTime.Now.ToString("MM.dd.yyyy");
+        FlowerPropertiesFileName = "D:/Unity Projects/ConvNeuralNetworksFlowers/Flower Conv Neural Network/Training Images/Parameters/" + saveCountIndicator + ".json";
+        SaveDataFormat saveData = new SaveDataFormat(FlowerData);
+        string JsonStringFlower = JsonUtility.ToJson(saveData,true);
         File.WriteAllText(FlowerPropertiesFileName, JsonStringFlower);
+        TakeScreenshot();
         saveCountIndicator++;
 
     }
@@ -150,24 +195,6 @@ public class FlowerGenerator : MonoBehaviour
     public void LoadFlower()
     {
         bool missingData = false;
-        if (File.Exists(StemPropertiesFileName))
-        {
-            string fileData = File.ReadAllText(StemPropertiesFileName);
-            stemData = JsonUtility.FromJson<StemData>(fileData);
-        }
-        else
-        {
-            missingData = true;
-        }
-        if (File.Exists(HeadPropertiesFileName))
-        {
-            string fileData = File.ReadAllText(StemPropertiesFileName);
-            headData = JsonUtility.FromJson<HeadData>(fileData);
-        }
-        else
-        {
-            missingData = true;
-        }
 
         if (File.Exists(FlowerPropertiesFileName))
         {
@@ -181,7 +208,12 @@ public class FlowerGenerator : MonoBehaviour
             Debug.LogError("DATA FILE MISSING");
             return;
         }
+    }
 
+    public void TakeScreenshot()
+    {
+        string fullPath = Path.Combine("D:/Unity Projects/ConvNeuralNetworksFlowers/Flower Conv Neural Network/Training Images/Images", saveCountIndicator + ".png");
+        ScreenCapture.CaptureScreenshot(fullPath);
     }
 
 }
