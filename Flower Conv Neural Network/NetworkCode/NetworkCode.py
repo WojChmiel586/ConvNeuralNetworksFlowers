@@ -5,9 +5,11 @@ import pandas as pd
 import numpy as np
 import pip
 import json
+import PIL.Image as imageLib
 import cv2
 
 import torch
+import torch.nn as nn
 from torch.autograd import Variable
 from torch.nn import Linear, ReLU, CrossEntropyLoss, Sequential, Conv2d, MaxPool2d, Module, Softmax, BatchNorm2d, \
     Dropout
@@ -21,8 +23,18 @@ import matplotlib.pyplot as plt
 from torch.utils.data import Dataset, DataLoader
 from torchvision import datasets, transforms
 
+preprocess = transforms.Compose([
+    # resize
+    transforms.Resize(256),
+    # center-crop
+    transforms.CenterCrop(256),
+    # to-tensor
+    transforms.ToTensor(),
+    # normalize
+])
 
-class InputData():
+
+class InputData:
     def __init__(self, image, jsonfile):
         self.image = image
         self.json = jsonfile
@@ -46,44 +58,142 @@ class PhotoData(Dataset):
     def loaditem(self, idx):
         img_id = self.image_ids[idx]
         print(img_id)
-        img = plt.imread(os.path.join(self.path_to_imgs, img_id))
-        img2 = transforms.Resize(32)
+        img = imageLib.open(os.path.join(self.path_to_imgs, img_id))
+        y = preprocess(img)
+        img = y
+        # img = plt.imread(os.path.join(self.path_to_imgs, img_id))
         json_id = img_id.replace('png', 'json')
         print(json_id)
         # json = pd.read_json(os.path.join(self.path_to_json, json_id))
         with open(self.path_to_json + json_id) as file:
-            jsonFile = json.load(file)
-        return img, jsonFile
+            json_file = json.load(file)
+        return img, json_file
 
     def __len__(self):
         return len(self.image_ids)
 
 
 l_data = PhotoData(
-    path_to_imgs='D:/Unity Projects/ConvNeuralNetworksFlowers/Flower Conv Neural Network/Training Images/Images',
-    path_to_json='D:/Unity Projects/ConvNeuralNetworksFlowers/Flower Conv Neural Network/Training Images/Parameters/')
-# print(l_data.data_list.__len__())
-# print(l_data.__getitem__(15).image)
-print(l_data.__getitem__(8).json)
-print(l_data.__getitem__(8).image)
+    path_to_imgs='C:/UnityProjects/ConvNeuralNetworksFlowers/Flower Conv Neural Network/Training Images/Images/',
+    path_to_json='C:/UnityProjects/ConvNeuralNetworksFlowers/Flower Conv Neural Network/Training Images/Parameters/')
+
+reverse_preprocess = transforms.Compose(
+    [
+        transforms.ToPILImage(),
+        np.array,
+    ]
+)
+plt.show()
+
+# Example of unpacking json data
+# with open(
+#      "D:/Unity Projects/ConvNeuralNetworksFlowers/Flower Conv Neural Network/Training Images\Parameters/0.json") as f:
+#    sample_submission = json.load(f)
+print(l_data.__getitem__(8).json[5])
+print(len(l_data.__getitem__(8).json))
+# training_Data = DataLoader(l_data,batch_size=20,shuffle)
 
 
-with open(
-        "D:/Unity Projects/ConvNeuralNetworksFlowers/Flower Conv Neural Network/Training Images\Parameters/0.json") as f:
-    sample_submission = json.load(f)
+class LeNet5(Module):
+    def __init__(self):
+        super(LeNet5, self).__init__()
+        self.c1 = Conv2d(in_channels=1, out_channels=6, kernel_size=5, stride=1, padding=2)
+        self.c2 = Conv2d(in_channels=6, out_channels=16, kernel_size=5, stride=1, padding=0)
+        self.c3 = Conv2d(in_channels=16, out_channels=120, kernel_size=5, stride=1, padding=0)
+        self.max_pool = MaxPool2d(kernel_size=2, stride=2)
+        self.relu = ReLU()
+        self.fc1 = Linear(in_features=120, out_features=84)
+        self.fc2 = Linear(in_features=84, out_features=10)
 
-print(l_data.__getitem__(8).json['_horizontalLines'])
+    def forward(self, img):
+        x = self.c1(img)
+        x = self.relu(self.max_pool(x))
+        x = self.c2(x)
+        x = self.relu(self.max_pool(x))
+        x = self.relu(self.c3(x))
+        x = torch.flatten(x, 1)
+        x = self.relu(self.fc1(x))
+        x = self.fc2(x)
+        return x
 
-# transform = transforms.Compose([
-#     # resize
-#     transforms.Resize(32),
-#     # center-crop
-#     transforms.CenterCrop(32),
-#     # to-tensor
-#     transforms.ToTensor(),
-#     # normalize
-#     #transforms.Normalize([0.5, 0.5, 0.5], [0.5, 0.5, 0.5])
-# ])
+
+class Model:
+    def __init__(self, model, learning_rate, device):
+        self.model = model
+        self.lr = learning_rate
+        self.loss = nn.MSELoss()
+        self.opt = torch.optim.Adam(self.model.parameters(), lr=self.lr)
+        self.train_loss = []
+        self.val_loss = []
+        self.train_acc = []
+        self.val_acc = []
+        self.device = device
+
+    def batch_accuracy(self, output, target):
+        # output shape: [batch, 10]
+        output = nn.functional.softmax(output, dim=1)
+        output = output.argmax(1)
+        acc = torch.sum(output == target) / output.shape[0]
+        return acc.cpu() * 100
+
+    def train_step(self, dataset):
+        self.model.train()
+        batch_loss = []
+        batch_acc = []
+        for batch in dataset:
+            inputs = batch[0].to(self.device)
+            targets = batch[1].to(self.device)
+            self.opt.zero_grad()
+
+            outputs = self.model(inputs)
+
+            loss = self.loss(outputs, targets)
+            loss.backward()
+            self.opt.step()
+            batch_loss.append(loss.item())
+            batch_acc.append(self.batch_accuracy(outputs, targets))
+
+        self.train_loss.append(np.mean(batch_loss))
+        self.train_acc.append(np.mean(batch_acc))
+
+    def validation_step(self, dataset):
+        self.model.eval()
+        batch_loss = []
+        batch_acc = []
+        with torch.no_grad():
+            for batch in dataset:
+                inputs = batch[0].to(self.device)
+                targets = batch[1].to(self.device)
+
+                outputs = self.model(inputs)
+
+                loss = self.loss(outputs, targets)
+                batch_loss.append(loss.item())
+                batch_acc.append(self.batch_accuracy(outputs, targets))
+
+        self.val_loss.append(np.mean(batch_loss))
+        self.val_acc.append(np.mean(batch_acc))
+
+    def test_step(self, dataset):
+        self.model.eval()
+        batch_acc = []
+        with torch.no_grad():
+            for batch in dataset:
+                inputs = batch[0].to(self.device)
+                targets = batch[1].to(self.device)
+
+                outputs = self.model(inputs)
+                batch_acc.append(self.batch_accuracy(outputs, targets))
+
+        print("Accuracy : ", np.mean(batch_acc), "%")
+
+
+epoch = 10
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+learning_rate = 1e-4
+batch = 32
+lenet5 = LeNet5().to(device)
+
 #
 #
 # class Net(Module):
