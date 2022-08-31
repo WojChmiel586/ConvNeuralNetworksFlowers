@@ -16,8 +16,6 @@ from torch.nn import Linear, ReLU, CrossEntropyLoss, Sequential, Conv2d, MaxPool
 from torch.optim import Adam, SGD
 
 import torchvision
-import torchvision.transforms as transforms
-from torchvision.datasets import ImageFolder
 import matplotlib.pyplot as plt
 
 from torch.utils.data import Dataset, DataLoader
@@ -33,32 +31,63 @@ preprocess = transforms.Compose([
     # normalize
 ])
 
+reverse_preprocess = transforms.Compose(
+    [
+        transforms.ToPILImage(),
+        np.array,
+    ]
+)
+
 
 class InputData:
     def __init__(self, image, jsonfile):
         self.image = image
-        self.start_pos_x = round(jsonfile.get('startPos').get('x'), 3)
-        self.start_pos_y = round(jsonfile.get('startPos').get('y'), 3)
-        self.start_pos_z = round(jsonfile.get('startPos').get('z'), 3)
-        self.tangent1_x = round(jsonfile.get('tangent1').get('x'), 3)
-        self.tangent1_y = round(jsonfile.get('tangent1').get('y'), 3)
-        self.tangent1_z = round(jsonfile.get('tangent1').get('z'), 3)
-        self.tangent2_x = round(jsonfile.get('tangent2').get('x'), 3)
-        self.tangent2_y = round(jsonfile.get('tangent2').get('y'), 3)
-        self.tangent2_z = round(jsonfile.get('tangent2').get('z'), 3)
-        self.end_pos_x = round(jsonfile.get('endPos').get('x'), 3)
-        self.end_pos_y = round(jsonfile.get('endPos').get('y'), 3)
-        self.end_pos_z = round(jsonfile.get('endPos').get('z'), 3)
-        self.edge_ring_count = jsonfile.get('_edgeRingCount')
-        self.stem_radius = jsonfile.get('_stemRadius')
-        self.cylinder_vertex_count = jsonfile.get('_cylinderVertexCount')
-        self.petal_colour_r = jsonfile.get('_petalColour').get('r')
-        self.petal_colour_g = jsonfile.get('_petalColour').get('g')
-        self.petal_colour_b = jsonfile.get('_petalColour').get('b')
-        self.radius = jsonfile.get('_radius')
-        self.vertical_lines = jsonfile.get('_verticalLines')
-        self.horizontal_lines = jsonfile.get('_horizontalLines')
-        self.json = jsonfile
+        # self.start_pos_x = round(jsonfile.get('startPos').get('x'), 3)
+        # self.start_pos_y = round(jsonfile.get('startPos').get('y'), 3)
+        # self.start_pos_z = round(jsonfile.get('startPos').get('z'), 3)
+        # self.tangent1_x = round(jsonfile.get('tangent1').get('x'), 3)
+        # self.tangent1_y = round(jsonfile.get('tangent1').get('y'), 3)
+        # self.tangent1_z = round(jsonfile.get('tangent1').get('z'), 3)
+        # self.tangent2_x = round(jsonfile.get('tangent2').get('x'), 3)
+        # self.tangent2_y = round(jsonfile.get('tangent2').get('y'), 3)
+        # self.tangent2_z = round(jsonfile.get('tangent2').get('z'), 3)
+        # self.end_pos_x = round(jsonfile.get('endPos').get('x'), 3)
+        # self.end_pos_y = round(jsonfile.get('endPos').get('y'), 3)
+        # self.end_pos_z = round(jsonfile.get('endPos').get('z'), 3)
+        # self.edge_ring_count = jsonfile.get('_edgeRingCount')
+        # self.stem_radius = jsonfile.get('_stemRadius')
+        # self.cylinder_vertex_count = jsonfile.get('_cylinderVertexCount')
+        # self.petal_colour_r = round(jsonfile.get('_petalColour').get('r'), 3)
+        # self.petal_colour_g = round(jsonfile.get('_petalColour').get('g'), 3)
+        # self.petal_colour_b = round(jsonfile.get('_petalColour').get('b'), 3)
+        # self.radius = jsonfile.get('_radius')
+        # self.vertical_lines = jsonfile.get('_verticalLines')
+        # self.horizontal_lines = jsonfile.get('_horizontalLines')
+        parameters = np.array(
+                [round(jsonfile.get('startPos').get('x'), 3),
+                 round(jsonfile.get('startPos').get('y'), 3),
+                 round(jsonfile.get('startPos').get('z'), 3),
+                 round(jsonfile.get('tangent1').get('x'), 3),
+                 round(jsonfile.get('tangent1').get('y'), 3),
+                 round(jsonfile.get('tangent1').get('z'), 3),
+                 round(jsonfile.get('tangent2').get('x'), 3),
+                 round(jsonfile.get('tangent2').get('y'), 3),
+                 round(jsonfile.get('tangent2').get('z'), 3),
+                 round(jsonfile.get('endPos').get('x'), 3),
+                 round(jsonfile.get('endPos').get('y'), 3),
+                 round(jsonfile.get('endPos').get('z'), 3),
+                 jsonfile.get('_edgeRingCount'),
+                 jsonfile.get('_stemRadius'),
+                 jsonfile.get('_cylinderVertexCount'),
+                 round(jsonfile.get('_petalColour').get('r'), 3),
+                 round(jsonfile.get('_petalColour').get('g'), 3),
+                 round(jsonfile.get('_petalColour').get('b'), 3),
+                 jsonfile.get('_radius'),
+                 jsonfile.get('_verticalLines'),
+                 jsonfile.get('_horizontalLines')], dtype=float
+            )
+        self.parameters = torch.from_numpy(parameters)
+        # self.json = jsonfile
 
 
 class PhotoData(Dataset):
@@ -74,7 +103,7 @@ class PhotoData(Dataset):
             self.data_list.append(x)
 
     def __getitem__(self, index):
-        return self.data_list[index]
+        return self.data_list[index].image, self.data_list[index].parameters
 
     def load_item(self, idx):
         img_id = self.image_ids[idx]
@@ -82,10 +111,8 @@ class PhotoData(Dataset):
         img = imageLib.open(os.path.join(self.path_to_imgs, img_id))
         y = preprocess(img)
         img = y
-        # img = plt.imread(os.path.join(self.path_to_imgs, img_id))
         json_id = img_id.replace('png', 'json')
         print(json_id)
-        # json = pd.read_json(os.path.join(self.path_to_json, json_id))
         with open(self.path_to_json + json_id) as file:
             json_file = json.load(file)
         return img, json_file
@@ -99,28 +126,17 @@ json_path_home = 'D:/Unity Projects/ConvNeuralNetworksFlowers/Flower Conv Neural
 path_images_laptop = 'C:/UnityProjects/ConvNeuralNetworksFlowers/Flower Conv Neural Network/Training Images/Images/'
 path_json_laptop = 'C:/UnityProjects/ConvNeuralNetworksFlowers/Flower Conv Neural Network/Training Images/Parameters/'
 
-l_data = PhotoData(
+training_set = PhotoData(
     path_to_imgs=images_path_home,
     path_to_json=json_path_home)
 
-reverse_preprocess = transforms.Compose(
-    [
-        transforms.ToPILImage(),
-        np.array,
-    ]
-)
-plt.show()
 
 # Example of unpacking json data
 # with open(
 #      "D:/Unity Projects/ConvNeuralNetworksFlowers/Flower Conv Neural Network/Training Images\Parameters/0.json") as f:
 #    sample_submission = json.load(f)
-print(l_data.__getitem__(8).json.get('_petalColour'))
-print(l_data.__getitem__(8).petal_colour_g)
-print(len(l_data.__getitem__(8).json))
 
-
-# training_Data = DataLoader(l_data,batch_size=20,shuffle)
+# print(training_set.__getitem__(8).petal_colour_g)
 
 
 class LeNet5(Module):
@@ -136,6 +152,7 @@ class LeNet5(Module):
         self.fc1 = Linear(in_features=64 * 29 * 29, out_features=120)
         self.fc2 = Linear(in_features=120, out_features=84)
         self.fc3 = Linear(in_features=84, out_features=21)
+        self.float()
 
     def forward(self, img):
         x = self.c1(img)
@@ -150,11 +167,12 @@ class LeNet5(Module):
         # 61 -4 + 1 = 58
         x = self.relu(self.avg_pool(x))
         # 29
-        x = x.view(-1, 64 * 29 * 29)
-        # x = torch.flatten(x, 1)
+        # x = x.view(-1, 64 * 29 * 29)
+        x = torch.flatten(x, 1)
         x = self.relu(self.fc1(x))
         x = self.relu(self.fc2(x))
         x = self.fc3(x)
+
         return x
 
 
@@ -162,7 +180,8 @@ class Model:
     def __init__(self, model, learning_rate, device):
         self.model = model
         self.lr = learning_rate
-        self.loss = nn.MSELoss()
+        #self.loss = nn.MSELoss()
+        self.loss = nn.L1Loss()
         self.opt = torch.optim.SGD(self.model.parameters(), lr=self.lr)
         self.train_loss = []
         self.val_loss = []
@@ -184,18 +203,20 @@ class Model:
         for batch in dataset:
             inputs = batch[0].to(self.device)
             targets = batch[1].to(self.device)
+            print(targets.dtype)
             self.opt.zero_grad()
 
             outputs = self.model(inputs)
-
+            print(outputs.dtype)
             loss = self.loss(outputs, targets)
+            print(loss.dtype)
             loss.backward()
             self.opt.step()
             batch_loss.append(loss.item())
-            batch_acc.append(self.batch_accuracy(outputs, targets))
+            # batch_acc.append(self.batch_accuracy(outputs, targets))
 
         self.train_loss.append(np.mean(batch_loss))
-        self.train_acc.append(np.mean(batch_acc))
+        # self.train_acc.append(np.mean(batch_acc))
 
     def validation_step(self, dataset):
         self.model.eval()
@@ -205,15 +226,13 @@ class Model:
             for batch in dataset:
                 inputs = batch[0].to(self.device)
                 targets = batch[1].to(self.device)
-
                 outputs = self.model(inputs)
-
                 loss = self.loss(outputs, targets)
                 batch_loss.append(loss.item())
-                batch_acc.append(self.batch_accuracy(outputs, targets))
+                # batch_acc.append(self.batch_accuracy(outputs, targets))
 
         self.val_loss.append(np.mean(batch_loss))
-        self.val_acc.append(np.mean(batch_acc))
+        # self.val_acc.append(np.mean(batch_acc))
 
     def test_step(self, dataset):
         self.model.eval()
@@ -229,79 +248,47 @@ class Model:
         print("Accuracy : ", np.mean(batch_acc), "%")
 
 
-epoch = 10
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+epochs = 10
+device = "cuda" if torch.cuda.is_available() else "cpu"
 learning_rate = 1e-4
-batch = 32
+batch_size = 25
 lenet5 = LeNet5().to(device)
 
-#
-#
-# class Net(Module):
-#     def __init__(self):
-#         super(Net, self).__init__()
-#
-#         self.cnn_layers = Sequential(
-#             # Defining a 2D convolution layer
-#             Conv2d(1, 4, kernel_size=3, stride=1, padding=1),
-#             BatchNorm2d(4),
-#             ReLU(inplace=True),
-#             MaxPool2d(kernel_size=2, stride=2),
-#             # Defining another 2D convolution layer
-#             Conv2d(4, 4, kernel_size=3, stride=1, padding=1),
-#             BatchNorm2d(4),
-#             ReLU(inplace=True),
-#             MaxPool2d(kernel_size=2, stride=2),
-#         )
-#
-#         self.linear_layers = Sequential(
-#             Linear(4 * 7 * 7, 10)
-#         )
-#
-#     # Defining the forward pass
-#     def forward(self, x):
-#         x = self.cnn_layers(x)
-#         x = x.view(x.size(0), -1)
-#         x = self.linear_layers(x)
-#         return x
-#
-# model = Net()
-#
-#
-# optimizer = Adam(model.parameters(), lr=0.07)
-# # defining the loss function
-# criterion = CrossEntropyLoss()
-# # checking if GPU is available
-# if torch.cuda.is_available():
-#     model = model.cuda()
-#     criterion = criterion.cuda()
-#
-# print(model)
-# #Import Data
-# data_dir = "D:/Unity Projects/ConvNeuralNetworksFlowers/Flower Conv Neural Network/Training Images/Images"
-#
-# dataset = ImageFolder(data_dir, transform)
-#
-# img, label = dataset[0]
-# print(img.shape, label)
-#
-# # defining the number of epochs
-# n_epochs = 25
-# # empty list to store training losses
-# train_losses = []
-# # empty list to store validation losses
-# val_losses = []
-#
-#
-#
-#
-# # training the model
-# #for epoch in range(n_epochs):
-# #   train(epoch)
-#
-#
-# # plotting the training and validation loss
-# #plt.plot(train_losses, label='Training loss')
-# #plt.plot(val_losses, label='Validation loss')
-# #plt.legend()
-# #plt.show()
+training_set_size = len(training_set)
+# int(training_set_size * 0.6)
+training_set, validation_set = torch.utils.data.random_split(training_set, [75, 25])
+
+train_loader = DataLoader(training_set, batch_size=batch_size, shuffle=True)
+
+for batch in train_loader:
+    print(batch[0])
+    print(batch[1])
+
+validation_loader = DataLoader(validation_set, batch_size=batch_size, shuffle=True)
+
+test_set = datasets.ImageFolder('C:/Users/Wojciech/OneDrive/Pulpit/flowers/flower_photos/train/',
+                                transform=preprocess)
+
+test_loader = DataLoader(test_set, batch_size=batch_size, shuffle=True)
+
+model = Model(lenet5, learning_rate, device)
+for epoch in range(epochs):
+    model.train_step(train_loader)
+    model.validation_step(validation_loader)
+model.test_step(test_loader)
+
+plt.figure(dpi=150)
+plt.grid()
+plt.plot(model.train_loss)
+plt.plot(model.val_loss)
+plt.xlabel("Epochs")
+plt.ylabel("Loss")
+plt.savefig("Accuracy.png")
+
+plt.figure(dpi=150)
+plt.grid()
+plt.plot(model.train_acc)
+plt.plot(model.val_acc)
+plt.xlabel("Epochs")
+plt.ylabel("Accuracy")
+plt.savefig("Accuracy.png")

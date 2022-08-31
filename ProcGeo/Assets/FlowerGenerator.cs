@@ -38,15 +38,15 @@ public struct FlowerData
 public struct SaveDataFormat
 {
     //Head
-    public int _horizontalLines, _verticalLines;
+    public float _horizontalLines, _verticalLines;
     public float _radius;
     public Color _petalColour;
 
     //Stem
-    public int _cylinderVertexCount;
+    public float _cylinderVertexCount;
     public float _stemRadius;
-    public int _leafCount;
-    public int _edgeRingCount;
+    public float _leafCount;
+    public float _edgeRingCount;
     public Vector3 startPos, tangent1, tangent2, endPos;
 
     public SaveDataFormat(FlowerData data)
