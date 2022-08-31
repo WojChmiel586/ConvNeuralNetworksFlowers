@@ -73,9 +73,11 @@ class PhotoData(Dataset):
         return len(self.image_ids)
 
 
+images_path_home = 'D:/Unity Projects/ConvNeuralNetworksFlowers/Flower Conv Neural Network/Training Images/Images/'
+json_path_home = 'D:/Unity Projects/ConvNeuralNetworksFlowers/Flower Conv Neural Network/Training Images/Parameters/'
 l_data = PhotoData(
-    path_to_imgs='C:/UnityProjects/ConvNeuralNetworksFlowers/Flower Conv Neural Network/Training Images/Images/',
-    path_to_json='C:/UnityProjects/ConvNeuralNetworksFlowers/Flower Conv Neural Network/Training Images/Parameters/')
+    path_to_imgs=images_path_home,
+    path_to_json=json_path_home)
 
 reverse_preprocess = transforms.Compose(
     [
@@ -89,8 +91,9 @@ plt.show()
 # with open(
 #      "D:/Unity Projects/ConvNeuralNetworksFlowers/Flower Conv Neural Network/Training Images\Parameters/0.json") as f:
 #    sample_submission = json.load(f)
-print(l_data.__getitem__(8).json[5])
 print(len(l_data.__getitem__(8).json))
+
+
 # training_Data = DataLoader(l_data,batch_size=20,shuffle)
 
 
