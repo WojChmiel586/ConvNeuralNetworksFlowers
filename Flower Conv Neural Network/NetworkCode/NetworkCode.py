@@ -37,6 +37,27 @@ preprocess = transforms.Compose([
 class InputData:
     def __init__(self, image, jsonfile):
         self.image = image
+        self.start_pos_x = round(jsonfile.get('startPos').get('x'), 3)
+        self.start_pos_y = round(jsonfile.get('startPos').get('y'), 3)
+        self.start_pos_z = round(jsonfile.get('startPos').get('z'), 3)
+        self.tangent1_x = round(jsonfile.get('tangent1').get('x'), 3)
+        self.tangent1_y = round(jsonfile.get('tangent1').get('y'), 3)
+        self.tangent1_z = round(jsonfile.get('tangent1').get('z'), 3)
+        self.tangent2_x = round(jsonfile.get('tangent2').get('x'), 3)
+        self.tangent2_y = round(jsonfile.get('tangent2').get('y'), 3)
+        self.tangent2_z = round(jsonfile.get('tangent2').get('z'), 3)
+        self.end_pos_x = round(jsonfile.get('endPos').get('x'), 3)
+        self.end_pos_y = round(jsonfile.get('endPos').get('y'), 3)
+        self.end_pos_z = round(jsonfile.get('endPos').get('z'), 3)
+        self.edge_ring_count = jsonfile.get('_edgeRingCount')
+        self.stem_radius = jsonfile.get('_stemRadius')
+        self.cylinder_vertex_count = jsonfile.get('_cylinderVertexCount')
+        self.petal_colour_r = jsonfile.get('_petalColour').get('r')
+        self.petal_colour_g = jsonfile.get('_petalColour').get('g')
+        self.petal_colour_b = jsonfile.get('_petalColour').get('b')
+        self.radius = jsonfile.get('_radius')
+        self.vertical_lines = jsonfile.get('_verticalLines')
+        self.horizontal_lines = jsonfile.get('_horizontalLines')
         self.json = jsonfile
 
 
@@ -48,14 +69,14 @@ class PhotoData(Dataset):
         self.image_ids = os.listdir(path_to_imgs)
         self.data_list = []
         for i in range(self.image_ids.__len__()):
-            image, json = self.loaditem(i)
+            image, json = self.load_item(i)
             x = InputData(image, json)
             self.data_list.append(x)
 
     def __getitem__(self, index):
         return self.data_list[index]
 
-    def loaditem(self, idx):
+    def load_item(self, idx):
         img_id = self.image_ids[idx]
         print(img_id)
         img = imageLib.open(os.path.join(self.path_to_imgs, img_id))
@@ -73,9 +94,12 @@ class PhotoData(Dataset):
         return len(self.image_ids)
 
 
+path_images_laptop = 'C:/UnityProjects/ConvNeuralNetworksFlowers/Flower Conv Neural Network/Training Images/Images/'
+path_json_laptop = 'C:/UnityProjects/ConvNeuralNetworksFlowers/Flower Conv Neural Network/Training Images/Parameters/'
+
 l_data = PhotoData(
-    path_to_imgs='C:/UnityProjects/ConvNeuralNetworksFlowers/Flower Conv Neural Network/Training Images/Images/',
-    path_to_json='C:/UnityProjects/ConvNeuralNetworksFlowers/Flower Conv Neural Network/Training Images/Parameters/')
+    path_to_imgs=path_images_laptop,
+    path_to_json=path_json_laptop)
 
 reverse_preprocess = transforms.Compose(
     [
@@ -89,31 +113,46 @@ plt.show()
 # with open(
 #      "D:/Unity Projects/ConvNeuralNetworksFlowers/Flower Conv Neural Network/Training Images\Parameters/0.json") as f:
 #    sample_submission = json.load(f)
-print(l_data.__getitem__(8).json[5])
+print(l_data.__getitem__(8).json.get('_petalColour'))
+print(l_data.__getitem__(8).petal_colour_g)
 print(len(l_data.__getitem__(8).json))
+
+
 # training_Data = DataLoader(l_data,batch_size=20,shuffle)
 
 
 class LeNet5(Module):
     def __init__(self):
         super(LeNet5, self).__init__()
-        self.c1 = Conv2d(in_channels=1, out_channels=6, kernel_size=5, stride=1, padding=2)
-        self.c2 = Conv2d(in_channels=6, out_channels=16, kernel_size=5, stride=1, padding=0)
-        self.c3 = Conv2d(in_channels=16, out_channels=120, kernel_size=5, stride=1, padding=0)
-        self.max_pool = MaxPool2d(kernel_size=2, stride=2)
+
+        self.c1 = Conv2d(in_channels=3, out_channels=6, kernel_size=5, stride=1)
+        # 256-5 +1 =252
+        self.c2 = Conv2d(in_channels=6, out_channels=16, kernel_size=5, stride=1)
+        self.c3 = Conv2d(in_channels=16, out_channels=64, kernel_size=4, stride=1)
+        self.avg_pool = nn.AvgPool2d(kernel_size=2, stride=2)
         self.relu = ReLU()
-        self.fc1 = Linear(in_features=120, out_features=84)
-        self.fc2 = Linear(in_features=84, out_features=10)
+        self.fc1 = Linear(in_features=64 * 29 * 29, out_features=120)
+        self.fc2 = Linear(in_features=120, out_features=84)
+        self.fc3 = Linear(in_features=84, out_features=21)
 
     def forward(self, img):
         x = self.c1(img)
-        x = self.relu(self.max_pool(x))
+        # 252
+        x = self.relu(self.avg_pool(x))
+        # 126
         x = self.c2(x)
-        x = self.relu(self.max_pool(x))
-        x = self.relu(self.c3(x))
-        x = torch.flatten(x, 1)
+        # 126-5 +1 = 122
+        x = self.relu(self.avg_pool(x))
+        # 61
+        x = self.c3(x)
+        # 61 -4 + 1 = 58
+        x = self.relu(self.avg_pool(x))
+        # 29
+        x = x.view(-1, 64 * 29 * 29)
+        # x = torch.flatten(x, 1)
         x = self.relu(self.fc1(x))
-        x = self.fc2(x)
+        x = self.relu(self.fc2(x))
+        x = self.fc3(x)
         return x
 
 
@@ -122,7 +161,7 @@ class Model:
         self.model = model
         self.lr = learning_rate
         self.loss = nn.MSELoss()
-        self.opt = torch.optim.Adam(self.model.parameters(), lr=self.lr)
+        self.opt = torch.optim.SGD(self.model.parameters(), lr=self.lr)
         self.train_loss = []
         self.val_loss = []
         self.train_acc = []
