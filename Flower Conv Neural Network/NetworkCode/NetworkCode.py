@@ -127,8 +127,8 @@ path_images_laptop = 'C:/UnityProjects/ConvNeuralNetworksFlowers/Flower Conv Neu
 path_json_laptop = 'C:/UnityProjects/ConvNeuralNetworksFlowers/Flower Conv Neural Network/Training Images/Parameters/'
 
 training_set = PhotoData(
-    path_to_imgs=images_path_home,
-    path_to_json=json_path_home)
+    path_to_imgs=path_images_laptop,
+    path_to_json=path_json_laptop)
 
 
 # Example of unpacking json data
@@ -192,8 +192,9 @@ class Model:
     def batch_accuracy(self, output, target):
         # output shape: [batch, 10]
         output = nn.functional.softmax(output, dim=1)
-        output = output.argmax(1)
+        # output = output.argmax(1)
         acc = torch.sum(output == target) / output.shape[0]
+
         return acc.cpu() * 100
 
     def train_step(self, dataset):
@@ -203,20 +204,17 @@ class Model:
         for batch in dataset:
             inputs = batch[0].to(self.device)
             targets = batch[1].to(self.device)
-            print(targets.dtype)
             self.opt.zero_grad()
 
             outputs = self.model(inputs)
-            print(outputs.dtype)
             loss = self.loss(outputs, targets)
-            print(loss.dtype)
             loss.backward()
             self.opt.step()
             batch_loss.append(loss.item())
-            # batch_acc.append(self.batch_accuracy(outputs, targets))
+            batch_acc.append(self.batch_accuracy(outputs, targets))
 
         self.train_loss.append(np.mean(batch_loss))
-        # self.train_acc.append(np.mean(batch_acc))
+        self.train_acc.append(np.mean(batch_acc))
 
     def validation_step(self, dataset):
         self.model.eval()
@@ -229,10 +227,10 @@ class Model:
                 outputs = self.model(inputs)
                 loss = self.loss(outputs, targets)
                 batch_loss.append(loss.item())
-                # batch_acc.append(self.batch_accuracy(outputs, targets))
+                batch_acc.append(self.batch_accuracy(outputs, targets))
 
         self.val_loss.append(np.mean(batch_loss))
-        # self.val_acc.append(np.mean(batch_acc))
+        self.val_acc.append(np.mean(batch_acc))
 
     def test_step(self, dataset):
         self.model.eval()
@@ -266,7 +264,8 @@ for batch in train_loader:
 
 validation_loader = DataLoader(validation_set, batch_size=batch_size, shuffle=True)
 
-test_set = datasets.ImageFolder('C:/Users/Wojciech/OneDrive/Pulpit/flowers/flower_photos/train/',
+path_to_test_set = 'C:/Users/wojte/OneDrive/Pulpit/flowers/flower_photos/train'
+test_set = datasets.ImageFolder(path_to_test_set,
                                 transform=preprocess)
 
 test_loader = DataLoader(test_set, batch_size=batch_size, shuffle=True)
