@@ -60,7 +60,7 @@ public class FlowerStem : MonoBehaviour
     {
         for (int i = 0; i < gizmoVerts.Count; i++)
         {
-            Gizmos.DrawSphere(gizmoVerts[i], 0.02f);
+            //Gizmos.DrawSphere(gizmoVerts[i], 0.02f);
         }
 
         for (int i = 0; i < 4; i++)

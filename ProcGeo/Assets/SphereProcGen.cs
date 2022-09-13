@@ -1,4 +1,4 @@
-using System;
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,6 +16,7 @@ public class SphereProcGen : MonoBehaviour
     public int horizontalLines, verticalLines;
     [Range(0.1f,12f)]
     public float radius;
+    public int petalCount = 50;
 
     List<GameObject> petals = new List<GameObject>();
 
@@ -56,13 +57,32 @@ public class SphereProcGen : MonoBehaviour
 
     }
 
+    Vector3 Vector3Noise()
+    {
+       float _roughness = 0.01f;
+        Vector3 noise = new Vector3
+               (
+               Random.Range(-_roughness, _roughness) / 2,
+               Mathf.Abs(Random.Range(-_roughness, _roughness)) * 2,
+               Random.Range(-_roughness, _roughness) / 2
+               ) / 10f;
+        return noise;
+    }
+
     private void PositionPetals()
     {
-        
+
+        int ring = 0;
         for (int i = 0; i < petals.Count; i++)
         {
-            petals[i].transform.position = transform.TransformPoint(middleRing[i].position);
-            petals[i].transform.rotation = Quaternion.LookRotation(-transform.TransformDirection(middleRing[i].normal), Vector3.Cross(transform.TransformDirection(middleRing[i].normal), transform.right));
+            petals[i].transform.position = transform.TransformPoint(middleRing[ring].position + Vector3Noise());
+            petals[i].transform.rotation = Quaternion.LookRotation(-transform.TransformDirection(middleRing[ring].normal) + Vector3Noise(), Vector3.Cross(transform.TransformDirection(middleRing[ring].normal), transform.right) + Vector3Noise());
+            ring++;
+            if (ring >= middleRing.Count)
+            {
+                ring = 0;
+            }
+           
         }
     }
 
@@ -209,13 +229,15 @@ public class SphereProcGen : MonoBehaviour
 
     private void SpawnPetals()
     {
-        //if (petalStop)
-        //{
-        //    return;
-        //}
-        for (int i = 0; i < middleRing.Count-1; i++)
+        if (petalStop)
         {
-            GameObject current = Instantiate(petal, middleRing[i].position, Quaternion.identity);
+            return;
+        }
+        int ring = 0;
+        for (int i = 0; i <petalCount; i++)
+        {
+
+            GameObject current = Instantiate(petal,transform.position, Quaternion.identity);
             current.transform.parent = transform;
             petals.Add(current);
         }

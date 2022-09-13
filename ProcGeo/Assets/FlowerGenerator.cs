@@ -73,7 +73,7 @@ public class FlowerGenerator : MonoBehaviour
 
 
     float _roughness = 5f;
-    int saveCountIndicator = 0;
+
 
 
     StemData stemData = new StemData();
@@ -81,8 +81,15 @@ public class FlowerGenerator : MonoBehaviour
 
     public bool AutoCollectData = false;
     public int MaxDatapointsCount = 200;
-    public string FlowerPropertiesFileName;
+    [SerializeField] int CurrentFileIterator = 0;
+    public List<GameObject> backgrounds = new List<GameObject>();
+    private string FlowerPropertiesFileName;
+    public int loadedIndex = 0;
+    [SerializeField]
+    List<FlowerData> loadedFlowerData = new List<FlowerData>();
 
+
+    [HideInInspector]
     public FlowerData FlowerData;
 
 
@@ -103,6 +110,7 @@ public class FlowerGenerator : MonoBehaviour
     {
        stemScript = GetComponentInChildren<FlowerStem>();
        flowerHeadScript = GetComponentInChildren<SphereProcGen>();
+        LoadFiles();
     }
 
     private void Update()
@@ -116,7 +124,25 @@ public class FlowerGenerator : MonoBehaviour
         {
             SaveFlower();
         }
-        if (AutoCollectData && saveCountIndicator < MaxDatapointsCount)
+        if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            loadedIndex++;
+            if (loadedIndex >= loadedFlowerData.Count)
+            {
+                loadedIndex = 0;
+            }
+            GenerateLoadedFlower();
+        }
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            loadedIndex--;
+            if (loadedIndex < 0)
+            {
+                loadedIndex = loadedFlowerData.Count - 1;
+            }
+            GenerateLoadedFlower();
+        }
+        if (AutoCollectData && CurrentFileIterator < MaxDatapointsCount)
         {
             GenerateData();
             GenerateFlower();
@@ -135,14 +161,15 @@ public class FlowerGenerator : MonoBehaviour
     {
         StemData data = new StemData();
         data._cylinderVertexCount = Random.Range(5, 15);
-        data._stemRadius = Random.Range(0.03f, 0.1f) + FloatNoise()/10;
+        data._stemRadius = Random.Range(0.04f, 0.08f) + FloatNoise()/10;
         data._leafCount = 8;
         data._edgeRingCount = Random.Range(3, 65);
 
-        data.startPos = Vector3.zero + Vector3Noise();
+        data.startPos = Vector3.zero;
         data.tangent1 = data.startPos + Vector3Noise() * 2;
         data.tangent2 = data.tangent1 + Vector3Noise() * 2;
-        data.endPos = data.tangent2 + Vector3Noise() * 4;
+        data.endPos = data.tangent2 + Vector3Noise() * 3.5f;
+        data.endPos.y = Mathf.Clamp(data.endPos.y, 4, 6.3f);
 
         return data;
     }
@@ -151,8 +178,8 @@ public class FlowerGenerator : MonoBehaviour
     {
         HeadData data = new HeadData();
 
-        data._verticalLines = Random.Range(4, 16);
-        data._horizontalLines = Random.Range(4, 16);
+        data._verticalLines = Random.Range(15, 20);
+        data._horizontalLines = Random.Range(15, 20);
         data._radius = FlowerData.stemData._stemRadius + Mathf.Abs(FloatNoise())/10;
         data._petalColour = new Color(Random.Range(0f, 1f), Random.Range(0f,1f), Random.Range(0f, 1f), 1);
 
@@ -179,41 +206,88 @@ public class FlowerGenerator : MonoBehaviour
         stemScript.GenerateFlowerMesh();
         flowerHeadScript.GenerateHead();
     }
+    void GenerateLoadedFlower()
+    {
+        stemScript.loadProperties(loadedFlowerData[loadedIndex].stemData);
+        flowerHeadScript.loadProperties(loadedFlowerData[loadedIndex].headData);
+        stemScript.GenerateFlowerMesh();
+        flowerHeadScript.GenerateHead();
+    }
+
 
     public void SaveFlower()
     {
         //string dateString = System.DateTime.Now.ToString("MM.dd.yyyy");
-        FlowerPropertiesFileName = "D:/Unity Projects/ConvNeuralNetworksFlowers/Flower Conv Neural Network/Training Images/Parameters/" + saveCountIndicator + ".json";
+        FlowerPropertiesFileName = "D:/Unity Projects/ConvNeuralNetworksFlowers/Flower Conv Neural Network/Training Images/Parameters/" + CurrentFileIterator + ".json";
         SaveDataFormat saveData = new SaveDataFormat(FlowerData);
         string JsonStringFlower = JsonUtility.ToJson(saveData,true);
         File.WriteAllText(FlowerPropertiesFileName, JsonStringFlower);
+        //SwitchBackground();
         TakeScreenshot();
-        saveCountIndicator++;
+        CurrentFileIterator++;
 
     }
 
-    public void LoadFlower()
-    {
-        bool missingData = false;
-
-        if (File.Exists(FlowerPropertiesFileName))
-        {
-            FlowerData data = new FlowerData();
-            string fileData = File.ReadAllText(FlowerPropertiesFileName);
-            data = JsonUtility.FromJson<FlowerData>(fileData);
-        }
-
-        if (missingData)
-        {
-            Debug.LogError("DATA FILE MISSING");
-            return;
-        }
-    }
 
     public void TakeScreenshot()
     {
-        string fullPath = Path.Combine("D:/Unity Projects/ConvNeuralNetworksFlowers/Flower Conv Neural Network/Training Images/Images", saveCountIndicator + ".png");
+        string fullPath = Path.Combine("D:/Unity Projects/ConvNeuralNetworksFlowers/Flower Conv Neural Network/Training Images/Images", CurrentFileIterator + ".png");
         ScreenCapture.CaptureScreenshot(fullPath);
     }
+    void SwitchBackground()
+    {
+        foreach (var background in backgrounds)
+        {
+            background.SetActive(false);
+        }
 
+        backgrounds[Random.Range(0, 3)].SetActive(true);
+    }
+
+    void LoadFiles()
+    {
+        string path = "D:/Unity Projects/ConvNeuralNetworksFlowers/Flower Conv Neural Network/NetworkCode/Results/";
+        string[] fileEntries = Directory.GetFiles(path, "*.json");
+        foreach (var file in fileEntries)
+        {
+            StreamReader reader = new StreamReader(file);
+            string json_string = reader.ReadToEnd();
+            Debug.Log(json_string);
+            json_string = json_string.Remove(0,1);
+            Debug.Log("adjusted " + json_string);
+            json_string = json_string.Remove(json_string.Length-1,1);
+            TransformData(json_string);
+        }
+
+    }
+
+    void TransformData(string file)
+    {
+        Debug.Log("Full string " + file);
+        string[] values = file.Split(',');
+        Debug.Log("values size " + values.Length);
+        List<float> parsedValues = new List<float>();
+        foreach (var value in values)
+        {
+            Debug.Log(value);
+            parsedValues.Add(float.Parse(value));
+        }
+        StemData s_data = new StemData();
+        s_data.startPos = Vector3.zero;
+        s_data.tangent1 = new Vector3(parsedValues[0], parsedValues[1], parsedValues[2]);
+        s_data.tangent2 = s_data.tangent1 + new Vector3(parsedValues[3], parsedValues[4], parsedValues[5]);
+        s_data.endPos = s_data.tangent2 + new Vector3(parsedValues[6], parsedValues[7], parsedValues[8]);
+        s_data._cylinderVertexCount = 12;
+        s_data._edgeRingCount = 12;
+        s_data._leafCount = 8;
+        s_data._stemRadius = 0.04f;
+
+        HeadData h_data = new HeadData();
+        h_data._petalColour = new Color(parsedValues[9], parsedValues[10], parsedValues[11], 1);
+        h_data._horizontalLines = 12;
+        h_data._verticalLines = 12;
+        h_data._radius = 0.09f;
+
+        loadedFlowerData.Add(new FlowerData(s_data, h_data));
+    }
 }

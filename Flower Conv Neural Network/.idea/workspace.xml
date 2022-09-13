@@ -2,10 +2,217 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f4b9015a-9edf-46f1-a456-bdfb28707f92" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/Flower Conv Neural Network.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Flower Conv Neural Network.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NetworkCode/.idea/NetworkCode.iml" beforeDir="false" afterPath="$PROJECT_DIR$/NetworkCode/.idea/NetworkCode.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NetworkCode/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/NetworkCode/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NetworkCode/Accuracy.png" beforeDir="false" afterPath="$PROJECT_DIR$/NetworkCode/Accuracy.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NetworkCode/NetworkCode.py" beforeDir="false" afterPath="$PROJECT_DIR$/NetworkCode/NetworkCode.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Images/0.png" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Images/0.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Images/1.png" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Images/1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Images/10.png" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Images/10.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Images/11.png" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Images/11.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Images/12.png" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Images/12.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Images/13.png" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Images/13.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Images/14.png" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Images/14.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Images/15.png" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Images/15.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Images/16.png" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Images/16.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Images/17.png" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Images/17.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Images/18.png" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Images/18.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Images/19.png" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Images/19.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Images/2.png" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Images/2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Images/20.png" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Images/20.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Images/21.png" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Images/21.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Images/22.png" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Images/22.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Images/23.png" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Images/23.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Images/24.png" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Images/24.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Images/25.png" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Images/25.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Images/26.png" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Images/26.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Images/27.png" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Images/27.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Images/28.png" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Images/28.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Images/29.png" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Images/29.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Images/3.png" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Images/3.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Images/30.png" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Images/30.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Images/31.png" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Images/31.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Images/32.png" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Images/32.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Images/33.png" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Images/33.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Images/34.png" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Images/34.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Images/35.png" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Images/35.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Images/36.png" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Images/36.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Images/37.png" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Images/37.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Images/38.png" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Images/38.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Images/39.png" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Images/39.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Images/4.png" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Images/4.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Images/40.png" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Images/40.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Images/41.png" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Images/41.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Images/42.png" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Images/42.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Images/43.png" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Images/43.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Images/44.png" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Images/44.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Images/45.png" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Images/45.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Images/46.png" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Images/46.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Images/47.png" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Images/47.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Images/48.png" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Images/48.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Images/49.png" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Images/49.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Images/5.png" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Images/5.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Images/50.png" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Images/50.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Images/51.png" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Images/51.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Images/52.png" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Images/52.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Images/53.png" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Images/53.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Images/54.png" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Images/54.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Images/55.png" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Images/55.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Images/56.png" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Images/56.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Images/57.png" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Images/57.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Images/58.png" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Images/58.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Images/59.png" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Images/59.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Images/6.png" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Images/6.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Images/60.png" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Images/60.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Images/61.png" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Images/61.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Images/62.png" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Images/62.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Images/63.png" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Images/63.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Images/64.png" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Images/64.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Images/65.png" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Images/65.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Images/66.png" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Images/66.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Images/67.png" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Images/67.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Images/68.png" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Images/68.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Images/69.png" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Images/69.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Images/7.png" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Images/7.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Images/70.png" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Images/70.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Images/71.png" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Images/71.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Images/72.png" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Images/72.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Images/73.png" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Images/73.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Images/74.png" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Images/74.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Images/75.png" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Images/75.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Images/76.png" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Images/76.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Images/77.png" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Images/77.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Images/78.png" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Images/78.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Images/79.png" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Images/79.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Images/8.png" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Images/8.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Images/80.png" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Images/80.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Images/81.png" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Images/81.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Images/82.png" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Images/82.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Images/83.png" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Images/83.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Images/84.png" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Images/84.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Images/85.png" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Images/85.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Images/86.png" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Images/86.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Images/87.png" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Images/87.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Images/88.png" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Images/88.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Images/89.png" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Images/89.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Images/9.png" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Images/9.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Images/90.png" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Images/90.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Images/91.png" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Images/91.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Images/92.png" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Images/92.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Images/93.png" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Images/93.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Images/94.png" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Images/94.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Images/95.png" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Images/95.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Images/96.png" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Images/96.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Images/97.png" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Images/97.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Images/98.png" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Images/98.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Images/99.png" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Images/99.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Parameters/0.json" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Parameters/0.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Parameters/1.json" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Parameters/1.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Parameters/10.json" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Parameters/10.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Parameters/11.json" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Parameters/11.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Parameters/12.json" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Parameters/12.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Parameters/13.json" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Parameters/13.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Parameters/14.json" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Parameters/14.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Parameters/15.json" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Parameters/15.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Parameters/16.json" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Parameters/16.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Parameters/17.json" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Parameters/17.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Parameters/18.json" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Parameters/18.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Parameters/19.json" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Parameters/19.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Parameters/2.json" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Parameters/2.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Parameters/20.json" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Parameters/20.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Parameters/21.json" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Parameters/21.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Parameters/22.json" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Parameters/22.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Parameters/23.json" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Parameters/23.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Parameters/24.json" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Parameters/24.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Parameters/25.json" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Parameters/25.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Parameters/26.json" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Parameters/26.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Parameters/27.json" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Parameters/27.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Parameters/28.json" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Parameters/28.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Parameters/29.json" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Parameters/29.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Parameters/3.json" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Parameters/3.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Parameters/30.json" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Parameters/30.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Parameters/31.json" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Parameters/31.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Parameters/32.json" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Parameters/32.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Parameters/33.json" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Parameters/33.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Parameters/34.json" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Parameters/34.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Parameters/35.json" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Parameters/35.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Parameters/36.json" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Parameters/36.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Parameters/37.json" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Parameters/37.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Parameters/38.json" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Parameters/38.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Parameters/39.json" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Parameters/39.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Parameters/4.json" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Parameters/4.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Parameters/40.json" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Parameters/40.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Parameters/41.json" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Parameters/41.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Parameters/42.json" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Parameters/42.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Parameters/43.json" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Parameters/43.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Parameters/44.json" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Parameters/44.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Parameters/45.json" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Parameters/45.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Parameters/46.json" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Parameters/46.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Parameters/47.json" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Parameters/47.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Parameters/48.json" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Parameters/48.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Parameters/49.json" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Parameters/49.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Parameters/5.json" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Parameters/5.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Parameters/50.json" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Parameters/50.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Parameters/51.json" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Parameters/51.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Parameters/52.json" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Parameters/52.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Parameters/53.json" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Parameters/53.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Parameters/54.json" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Parameters/54.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Parameters/55.json" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Parameters/55.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Parameters/56.json" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Parameters/56.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Parameters/57.json" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Parameters/57.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Parameters/58.json" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Parameters/58.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Parameters/59.json" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Parameters/59.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Parameters/6.json" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Parameters/6.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Parameters/60.json" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Parameters/60.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Parameters/61.json" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Parameters/61.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Parameters/62.json" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Parameters/62.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Parameters/63.json" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Parameters/63.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Parameters/64.json" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Parameters/64.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Parameters/65.json" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Parameters/65.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Parameters/66.json" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Parameters/66.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Parameters/67.json" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Parameters/67.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Parameters/68.json" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Parameters/68.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Parameters/69.json" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Parameters/69.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Parameters/7.json" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Parameters/7.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Parameters/70.json" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Parameters/70.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Parameters/71.json" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Parameters/71.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Parameters/72.json" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Parameters/72.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Parameters/73.json" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Parameters/73.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Parameters/74.json" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Parameters/74.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Parameters/75.json" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Parameters/75.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Parameters/76.json" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Parameters/76.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Parameters/77.json" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Parameters/77.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Parameters/78.json" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Parameters/78.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Parameters/79.json" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Parameters/79.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Parameters/8.json" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Parameters/8.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Parameters/80.json" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Parameters/80.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Parameters/81.json" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Parameters/81.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Parameters/82.json" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Parameters/82.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Parameters/83.json" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Parameters/83.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Parameters/84.json" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Parameters/84.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Parameters/85.json" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Parameters/85.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Parameters/86.json" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Parameters/86.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Parameters/87.json" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Parameters/87.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Parameters/88.json" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Parameters/88.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Parameters/89.json" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Parameters/89.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Parameters/9.json" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Parameters/9.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Parameters/90.json" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Parameters/90.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Parameters/91.json" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Parameters/91.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Parameters/92.json" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Parameters/92.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Parameters/93.json" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Parameters/93.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Parameters/94.json" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Parameters/94.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Parameters/95.json" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Parameters/95.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Parameters/96.json" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Parameters/96.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Parameters/97.json" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Parameters/97.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Parameters/98.json" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Parameters/98.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Training Images/Parameters/99.json" beforeDir="false" afterPath="$PROJECT_DIR$/Training Images/Parameters/99.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../ProcGeo/Assets/FlowerGenerator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../ProcGeo/Assets/FlowerGenerator.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../ProcGeo/Assets/Scenes/ProcGen.unity" beforeDir="false" afterPath="$PROJECT_DIR$/../ProcGeo/Assets/Scenes/ProcGen.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../ProcGeo/Assets/Scripts/Petals.mat" beforeDir="false" afterPath="$PROJECT_DIR$/../ProcGeo/Assets/Scripts/Petals.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ProcGeo/ProjectSettings/ShaderGraphSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/../ProcGeo/ProjectSettings/ShaderGraphSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProcGeo/Assets/Scripts/StemGreen.mat" beforeDir="false" afterPath="$PROJECT_DIR$/../ProcGeo/Assets/Scripts/StemGreen.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProcGeo/Assets/SphereProcGen.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../ProcGeo/Assets/SphereProcGen.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../ProcGeo/UserSettings/Layouts/default-2021.dwlt" beforeDir="false" afterPath="$PROJECT_DIR$/../ProcGeo/UserSettings/Layouts/default-2021.dwlt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -25,12 +232,14 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Unity Projects/ConvNeuralNetworksFlowers/Flower Conv Neural Network&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
   }
-}]]></component>
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -52,5 +261,13 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XDebuggerManager">
+    <watches-manager>
+      <configuration name="PythonConfigurationType">
+        <watch expression="input" />
+        <watch expression="image" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>
